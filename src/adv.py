@@ -53,29 +53,40 @@ newPlayer = Player(room["outside"])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print("Type N,E,S,W to travel within my mansion or type q to quit.\n")
+print(newPlayer)
+
 while True:
-    print(newPlayer)
-    print("\n")
     
-    print("Type N,E,S,W to travel within my mansion or type q to quit:")
     newroom = input("Where would you like to go? ")
-
-
+    print("\n")
     if newroom == "n":
-        if newPlayer.current_room.n_to:
+        try:
             newPlayer.current_room = newPlayer.current_room.n_to
-        else:
+            print(newPlayer)
+        except AttributeError:
             print("Wrong way bud!")
-        pass
     elif newroom == "e":
-        newPlayer.current_room = newPlayer.current_room.e_to
-
+        try:
+            newPlayer.current_room = newPlayer.current_room.e_to
+            print(newPlayer)
+        except AttributeError:
+            print("Can't go that way!")
         pass
     elif newroom == "s":
+        try:
+            newPlayer.current_room = newPlayer.current_room.s_to
+            print(newPlayer)
+        except AttributeError:
+            print("Try another way!")
         pass
     elif newroom == "w":
+        try:
+            newPlayer.current_room = newPlayer.current_room.w_to
+            print(newPlayer)
+        except AttributeError:
+            print("That way is not possible.")
         pass
     else:
-        print("Try again!")
-    
+        print("Type N,E,S,W to travel within my mansion or type q to quit:")
     
