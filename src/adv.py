@@ -1,22 +1,23 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
+    'outside':  Room("Outside The Cave Entrance",
                      "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer':    Room("On The Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    'overlook': Room("On The Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+    'narrow':   Room("On A Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+    'treasure': Room("In A Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
@@ -36,8 +37,11 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+print("\n")
+print("Welcome to Adrian's Adventure!")
 
 # Make a new player object that is currently in the 'outside' room.
+newPlayer = Player(room["outside"])
 
 # Write a loop that:
 #
@@ -49,3 +53,29 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    print(newPlayer)
+    print("\n")
+    
+    print("Type N,E,S,W to travel within my mansion or type q to quit:")
+    newroom = input("Where would you like to go? ")
+
+
+    if newroom == "n":
+        if newPlayer.current_room.n_to:
+            newPlayer.current_room = newPlayer.current_room.n_to
+        else:
+            print("Wrong way bud!")
+        pass
+    elif newroom == "e":
+        newPlayer.current_room = newPlayer.current_room.e_to
+
+        pass
+    elif newroom == "s":
+        pass
+    elif newroom == "w":
+        pass
+    else:
+        print("Try again!")
+    
+    
