@@ -17,15 +17,21 @@ class Room():
         return self.desc
 
     def print_items(self):
-        print(f"Wow look whats {self.name}:")
-        print("You want to take one?")
-        for item in self.items:
-            print(f"{item}")
-
+        if len(self.items) > 0:
+            print(f"Wow look whats {self.name}:")
+            print("You want to take one?")
+            for item in self.items:
+                print(f"{item}")
+        else:
+            print("Nothing found " + self.name)
 
     def remove_item(self,item_index):
         item = self.items.pop(item_index)
+        
         item.on_take()
 
         return item
-        pass
+    
+    def add_item(self,item):
+
+        self.items.append(item)

@@ -86,7 +86,7 @@ while True:
 
 
         # show items
-        elif action[0] == "items":
+        elif action[0] in ["i", "inventory"]:
             newPlayer.items_on_player()
 
         elif action[0] in ["n","s","w","e"]:
@@ -105,7 +105,9 @@ while True:
             pass
 
         elif action[0] in ["drop"]:
-            pass
+            item = " ".join(action[1:]) 
+            
+            newPlayer.drop_item(item)
 
         else:
         # if no action[0] then say

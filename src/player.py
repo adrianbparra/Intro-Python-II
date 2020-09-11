@@ -22,26 +22,24 @@ class Player():
 
             item = self.current_room.remove_item(index)
 
-            print(item)
-
             self.items.append(item)
 
-            pass
         except ValueError:
             print("There was no " + item_searched + " " + self.current_room.name)
-            pass
 
-        # print(index)
-        # if item_searched in [itm.name for itm in self.current_room.items]:
-        #     # adds items to item from current room
+    def drop_item(self,item_searched):
+        
+        try:
+            index = [itm.name for itm in self.items].index(item_searched)
 
-        #     pass
-        # else:
-        #     print(f"{item_searched} is no where to be found")
-        # pass
+            item = self.items.pop(index)
 
-    def drop_item(self):
-        pass
+            item.on_drop()
+
+            self.current_room.add_item(item)
+
+        except ValueError:
+            print("You dont have "+ item_searched+ " to drop.")
 
     def move(self,direction):
         # direction n,s,e,w
