@@ -1,5 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from item import LightSource
+
 class Player():
     def __init__(self,name, current_room,items):
         self.name = name
@@ -39,7 +41,13 @@ class Player():
             self.current_room.add_item(item)
 
         except ValueError:
-            print("You dont have "+ item_searched+ " to drop.")
+            print("You dont have "+ item_searched + " to drop.")
+
+    def has_light(self):
+        if any(isinstance(item, LightSource) for item in self.items) or any(isinstance(item, LightSource) for item in self.current_room.items) or self.current_room.is_light == True:
+            return True
+        else:
+            return False
 
     def move(self,direction):
         # direction n,s,e,w

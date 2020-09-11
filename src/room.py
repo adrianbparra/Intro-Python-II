@@ -3,10 +3,11 @@
 
 
 class Room():
-    def __init__(self,name,desc,items):
+    def __init__(self,name,desc,is_light,items):
         self.name = name
         self.desc = desc
         self.items: List[Item] = items
+        self.is_light : bool = is_light
 
         self.n_to = None
         self.s_to = None
@@ -18,7 +19,7 @@ class Room():
 
     def print_items(self):
         if len(self.items) > 0:
-            print(f"Wow look whats {self.name}:")
+            print(f"Wow look what is {self.name}:")
             print("You want to take one?")
             for item in self.items:
                 print(f"{item}")
@@ -35,3 +36,4 @@ class Room():
     def add_item(self,item):
 
         self.items.append(item)
+
