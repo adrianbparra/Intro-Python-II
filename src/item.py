@@ -6,5 +6,8 @@ class Item():
     def __str__(self):
         return self.name + " = " + self.description
 
+    def __repr__(self):
+        return self.name + " : " + self.description
+
     def on_take(self):
-        return "You have picked up" + self.name 
+        print("You have picked up " + self.name) 

@@ -9,14 +9,38 @@ class Player():
     def location(self):
         print(f"You are {self.current_room.name} \n{self.current_room.desc}")
 
-    def itemsonplayer(self):
+    def items_on_player(self):
         # shows how many items and lists them.
         print(f"You have {len(self.items)} items:")
         for item in self.items:
             print(f"{item}")
 
-    def additem(self):
-        # adds items to item from current room
+    def add_item(self,item_searched):
+        # checks if item in current room
+        try:
+            index = [itm.name for itm in self.current_room.items].index(item_searched)
+
+            item = self.current_room.remove_item(index)
+
+            print(item)
+
+            self.items.append(item)
+
+            pass
+        except ValueError:
+            print("There was no " + item_searched + " " + self.current_room.name)
+            pass
+
+        # print(index)
+        # if item_searched in [itm.name for itm in self.current_room.items]:
+        #     # adds items to item from current room
+
+        #     pass
+        # else:
+        #     print(f"{item_searched} is no where to be found")
+        # pass
+
+    def drop_item(self):
         pass
 
     def move(self,direction):

@@ -87,7 +87,7 @@ while True:
 
         # show items
         elif action[0] == "items":
-            newPlayer.itemsonplayer()
+            newPlayer.items_on_player()
 
         elif action[0] in ["n","s","w","e"]:
             newPlayer.move(action[0])
@@ -98,14 +98,10 @@ while True:
     if len(action) >= 2:
 
         if action[0] in ["get","take"]:
-            print(" ".join(action[1:]))
-            # check if it action[1] is available
-            # try:
-            #     pass
-            #     # check if action[:1].join is in rooom
+            item = " ".join(action[1:]) 
+      
+            newPlayer.add_item(item)
 
-            # except TypeError:
-            #     pass
             pass
 
         elif action[0] in ["drop"]:

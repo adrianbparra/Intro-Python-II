@@ -7,7 +7,7 @@ class Room():
         self.name = name
         self.desc = desc
         self.items: List[Item] = items
-        
+
         self.n_to = None
         self.s_to = None
         self.e_to = None
@@ -17,7 +17,15 @@ class Room():
         return self.desc
 
     def print_items(self):
-        print(f"Wow look what items are {self.name}:")
+        print(f"Wow look whats {self.name}:")
         print("You want to take one?")
         for item in self.items:
             print(f"{item}")
+
+
+    def remove_item(self,item_index):
+        item = self.items.pop(item_index)
+        item.on_take()
+
+        return item
+        pass
