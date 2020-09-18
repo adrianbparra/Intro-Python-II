@@ -1,6 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-from item import LightSource
+from item import LightSource, Chest, Item
 
 class Player():
     def __init__(self,name, current_room,items):
@@ -48,6 +48,40 @@ class Player():
             return True
         else:
             return False
+
+    def open_chest(self,item_searched):
+
+        try:
+            # check if user has chest
+            index = [itm.name for itm in self.items].index(item_searched)
+
+            chest = self.items[index]
+
+                # check if unlocked 
+            if self.items[index].unlocked == True or chest.chest_id in [item.key_id for item in self.items if hasattr(item,"key_id")]:
+
+                if isinstance(chest.item,Item):
+
+                    chest.unlocked = False
+                    chest.on_open()
+
+                    item_in_chest = chest.item
+                    
+                    self.items.append(item_in_chest)
+
+                    chest.item = None
+
+                else:
+                    print("There was nothin in "+ chest.name)
+
+            else:
+                
+                print("You don't have the key to unlock " + chest.name)
+            
+            pass
+        except ValueError:
+            print("You dont have "+ item_searched + " to open.")
+
 
     def move(self,direction):
         # direction n,s,e,w

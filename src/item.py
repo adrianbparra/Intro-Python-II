@@ -17,6 +17,11 @@ class Item():
 
 
 
+class Key(Item):
+    def __init__(self,name,description,key_id):
+        super().__init__(name,description)
+        self.key_id = key_id
+
 class LightSource(Item):
     def __init__(self,name,description):
         super().__init__(name,description)
@@ -24,3 +29,17 @@ class LightSource(Item):
 
     def on_drop(self):
         print("It's not wise to drop your source of light!")
+
+
+
+class Chest(Item):
+    def __init__(self, name, description, unlocked, item: None, chest_id):
+        super().__init__(name, description)
+        self.unlocked = unlocked
+        self.item = item
+        self.chest_id = chest_id
+
+    def on_open(self):
+        # check if unlocked
+        print("You have opened a " + self.name)
+        print("It had a " + self.item.name)
